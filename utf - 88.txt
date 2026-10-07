@@ -1,0 +1,1949 @@
+```html
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GadgetUZ</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f5f5f5;
+    color:#222;
+    overflow-x:hidden;
+    animation:pageShow .6s ease;
+}
+
+button,input,select{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes pageShow{
+    from{opacity:0}
+    to{opacity:1}
+}
+
+@keyframes headerDown{
+    from{
+        transform:translateY(-100%);
+    }
+    to{
+        transform:translateY(0);
+    }
+}
+
+@keyframes productIn{
+    from{
+        opacity:0;
+        transform:translateY(25px) scale(.96);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+@keyframes bannerIn{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes modalIn{
+    from{
+        opacity:0;
+        transform:scale(.8) translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+}
+
+@keyframes shake{
+    0%,100%{transform:translateX(0)}
+    25%{transform:translateX(-6px)}
+    75%{transform:translateX(6px)}
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-15px);
+    }
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+    width:92%;
+    max-width:1200px;
+    margin:auto;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    background:#7000ff;
+    color:white;
+    padding:15px 0 18px;
+    position:sticky;
+    top:0;
+    z-index:50;
+    box-shadow:0 2px 15px rgba(0,0,0,.18);
+    animation:headerDown .6s ease;
+}
+
+.top{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:900;
+    white-space:nowrap;
+}
+
+.logo span{
+    color:#ffd000;
+}
+
+.search{
+    flex:1;
+}
+
+.search input{
+    width:100%;
+    height:45px;
+    border:0;
+    outline:none;
+    border-radius:10px;
+    padding:0 18px;
+    font-size:15px;
+    transition:.25s;
+}
+
+.search input:focus{
+    transform:scale(1.02);
+    box-shadow:0 0 0 4px rgba(255,255,255,.2);
+}
+
+.login-btn{
+    border:0;
+    background:white;
+    color:#7000ff;
+    padding:11px 18px;
+    border-radius:9px;
+    font-weight:bold;
+    white-space:nowrap;
+    transition:.25s;
+}
+
+.login-btn:hover{
+    transform:translateY(-2px) scale(1.03);
+    box-shadow:0 7px 18px rgba(0,0,0,.2);
+}
+
+.login-btn:active{
+    transform:scale(.94);
+}
+
+.admin-status{
+    display:none;
+    align-items:center;
+    gap:7px;
+}
+
+.admin-status.show{
+    display:flex;
+}
+
+.admin-label{
+    background:#ffd000;
+    color:#111;
+    padding:8px 10px;
+    border-radius:8px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.logout{
+    border:0;
+    background:white;
+    color:#7000ff;
+    padding:9px 12px;
+    border-radius:8px;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.logout:hover{
+    transform:scale(1.05);
+}
+
+/* ================= CATEGORIES ================= */
+
+.categories{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+    overflow-x:auto;
+}
+
+.categories::-webkit-scrollbar{
+    display:none;
+}
+
+.category{
+    border:0;
+    background:white;
+    color:#333;
+    padding:10px 18px;
+    border-radius:22px;
+    white-space:nowrap;
+    transition:.25s;
+}
+
+.category:hover{
+    transform:translateY(-2px);
+    box-shadow:0 5px 12px rgba(0,0,0,.12);
+}
+
+.category.active{
+    background:#ffd000;
+    color:#111;
+    transform:scale(1.04);
+}
+
+/* ================= BANNER ================= */
+
+.banner{
+    margin:20px 0;
+    min-height:230px;
+    border-radius:18px;
+    background:
+        radial-gradient(circle at 85% 30%,rgba(255,255,255,.2),transparent 25%),
+        linear-gradient(110deg,#4c00b7,#963cff);
+    color:white;
+    padding:40px;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    position:relative;
+    animation:bannerIn .8s ease;
+}
+
+.banner:after{
+    content:"";
+    position:absolute;
+    width:240px;
+    height:240px;
+    right:-60px;
+    bottom:-120px;
+    background:rgba(255,255,255,.12);
+    border-radius:50%;
+    animation:float 4s ease-in-out infinite;
+}
+
+.banner h1{
+    font-size:38px;
+    margin-bottom:10px;
+    position:relative;
+    z-index:2;
+}
+
+.banner p{
+    margin-bottom:20px;
+    opacity:.9;
+    position:relative;
+    z-index:2;
+}
+
+.banner button{
+    border:0;
+    background:#ffd000;
+    padding:12px 25px;
+    border-radius:8px;
+    font-weight:bold;
+    position:relative;
+    z-index:2;
+    transition:.25s;
+}
+
+.banner button:hover{
+    transform:translateY(-3px) scale(1.04);
+    box-shadow:0 8px 20px rgba(0,0,0,.2);
+}
+
+.banner button:active{
+    transform:scale(.94);
+}
+
+/* ================= TITLE ================= */
+
+.title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin:30px 0 15px;
+}
+
+.title h2{
+    font-size:25px;
+}
+
+/* ================= PRODUCTS ================= */
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:15px;
+}
+
+.product{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid #eee;
+    transition:.3s;
+    animation:productIn .55s ease both;
+}
+
+.product:hover{
+    transform:translateY(-7px);
+    box-shadow:0 12px 30px rgba(0,0,0,.13);
+}
+
+.product.hide{
+    display:none;
+}
+
+.product-img{
+    height:180px;
+    background:#f7f7f7;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.product-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.product:hover .product-img img{
+    transform:scale(1.08);
+}
+
+.info{
+    padding:12px;
+}
+
+.name{
+    height:40px;
+    overflow:hidden;
+    font-size:15px;
+    line-height:1.3;
+}
+
+.rating{
+    color:#f0a000;
+    font-size:13px;
+    margin:8px 0;
+}
+
+.price-area{
+    min-height:45px;
+}
+
+.price{
+    font-size:19px;
+    font-weight:bold;
+    color:#222;
+    animation:productIn .35s ease;
+}
+
+/* ================= ADMIN ================= */
+
+.admin-panel{
+    display:none;
+    margin:25px 0;
+    background:white;
+    border:2px solid #7000ff;
+    border-radius:15px;
+    padding:20px;
+    animation:bannerIn .5s ease;
+}
+
+.admin-panel.show{
+    display:block;
+}
+
+.admin-panel h2{
+    color:#7000ff;
+    margin-bottom:15px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 2fr;
+    gap:10px;
+}
+
+.form-grid input,
+.form-grid select{
+    height:43px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:0 12px;
+    outline:none;
+    transition:.2s;
+}
+
+.form-grid input:focus,
+.form-grid select:focus{
+    border-color:#7000ff;
+    box-shadow:0 0 0 3px rgba(112,0,255,.1);
+}
+
+.image-picker{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.image-button{
+    height:43px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 15px;
+    background:#ffd000;
+    color:#111;
+    border-radius:8px;
+    font-weight:bold;
+    white-space:nowrap;
+    transition:.25s;
+}
+
+.image-button:hover{
+    transform:translateY(-2px);
+    background:#ffc400;
+}
+
+.image-preview{
+    width:43px;
+    height:43px;
+    object-fit:cover;
+    border-radius:8px;
+    border:1px solid #ddd;
+}
+
+.add-product{
+    height:43px;
+    border:0;
+    border-radius:8px;
+    background:#7000ff;
+    color:white;
+    font-weight:bold;
+    transition:.25s;
+}
+
+.add-product:hover{
+    background:#5c00d0;
+    transform:translateY(-2px);
+    box-shadow:0 7px 16px rgba(112,0,255,.25);
+}
+
+.admin-info{
+    color:#777;
+    font-size:13px;
+    margin-top:12px;
+}
+
+.admin-controls{
+    display:flex;
+    gap:5px;
+    margin-top:8px;
+}
+
+.admin-controls button{
+    flex:1;
+    border:0;
+    padding:8px 4px;
+    border-radius:7px;
+    font-size:12px;
+    transition:.2s;
+}
+
+.admin-controls button:hover{
+    transform:translateY(-2px);
+}
+
+.edit{
+    background:#eee;
+}
+
+.delete{
+    background:#ffe0e0;
+    color:#d00000;
+}
+
+/* ================= LOGIN ================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:1000;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.login-box{
+    width:100%;
+    max-width:380px;
+    background:white;
+    border-radius:18px;
+    padding:30px;
+    box-shadow:0 20px 60px rgba(0,0,0,.3);
+    animation:modalIn .4s ease;
+}
+
+.login-box h2{
+    margin-bottom:8px;
+}
+
+.login-box p{
+    color:#777;
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+.login-box input{
+    width:100%;
+    height:45px;
+    border:1px solid #ddd;
+    border-radius:9px;
+    padding:0 13px;
+    margin-bottom:10px;
+    outline:none;
+}
+
+.login-box input:focus{
+    border-color:#7000ff;
+    box-shadow:0 0 0 3px rgba(112,0,255,.1);
+}
+
+.login-submit{
+    width:100%;
+    height:45px;
+    border:0;
+    border-radius:9px;
+    background:#7000ff;
+    color:white;
+    font-weight:bold;
+    transition:.25s;
+}
+
+.login-submit:hover{
+    transform:translateY(-2px);
+    background:#5c00d0;
+}
+
+.close{
+    width:100%;
+    height:40px;
+    border:0;
+    background:#eee;
+    border-radius:9px;
+    margin-top:8px;
+}
+
+.error{
+    display:none;
+    color:#d00000;
+    font-size:13px;
+    margin-bottom:10px;
+}
+
+.error.show{
+    display:block;
+    animation:shake .35s ease;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translate(-50%,100px);
+    background:#222;
+    color:white;
+    padding:13px 22px;
+    border-radius:8px;
+    opacity:0;
+    transition:.35s;
+    z-index:2000;
+}
+
+.toast.show{
+    transform:translate(-50%,0);
+    opacity:1;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    margin-top:50px;
+    padding:35px 0;
+    background:white;
+    border-top:1px solid #ddd;
+    color:#777;
+    text-align:center;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:1050px){
+
+    .products{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .form-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:750px){
+
+    header{
+        position:relative;
+    }
+
+    .top{
+        flex-wrap:wrap;
+    }
+
+    .logo{
+        width:100%;
+        text-align:center;
+    }
+
+    .search{
+        width:100%;
+        flex:none;
+    }
+
+    .admin-status{
+        width:100%;
+        justify-content:center;
+    }
+
+    .banner{
+        min-height:190px;
+        padding:25px;
+    }
+
+    .banner h1{
+        font-size:27px;
+    }
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+        gap:9px;
+    }
+
+    .product-img{
+        height:145px;
+    }
+
+    .info{
+        padding:9px;
+    }
+
+    .name{
+        font-size:13px;
+    }
+
+    .price{
+        font-size:16px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .image-picker{
+        width:100%;
+    }
+
+    .image-button{
+        width:100%;
+    }
+
+}
+
+@media(max-width:400px){
+
+    .banner h1{
+        font-size:23px;
+    }
+
+    .category{
+        padding:9px 14px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+<div class="container">
+
+<div class="top">
+
+<div class="logo">
+GADGET<span>UZ</span>
+</div>
+
+<div class="search">
+<input
+id="search"
+type="text"
+placeholder="Mahsulot qidiring..."
+oninput="searchProducts()">
+</div>
+
+<button
+id="loginButton"
+class="login-btn"
+onclick="openLogin()">
+Kirish
+</button>
+
+<div
+id="adminStatus"
+class="admin-status">
+
+<div class="admin-label">
+ADMIN
+</div>
+
+<button
+class="logout"
+onclick="logout()">
+Chiqish
+</button>
+
+</div>
+
+</div>
+
+<!-- KATEGORIYALAR -->
+
+<div class="categories">
+
+<button
+class="category active"
+onclick="showCategory('all',this)">
+Barchasi
+</button>
+
+<button
+class="category"
+onclick="showCategory('phone',this)">
+Telefonlar
+</button>
+
+<button
+class="category"
+onclick="showCategory('audio',this)">
+Quloqchinlar
+</button>
+
+<button
+class="category"
+onclick="showCategory('power',this)">
+Powerbank
+</button>
+
+<button
+class="category"
+onclick="showCategory('cable',this)">
+Kabellar
+</button>
+
+<button
+class="category"
+onclick="showCategory('watch',this)">
+Smart Watch
+</button>
+
+<button
+class="category"
+onclick="showCategory('case',this)">
+Chexollar
+</button>
+
+<button
+class="category"
+onclick="showCategory('charger',this)">
+Zaryadlovchi
+</button>
+
+</div>
+
+</div>
+
+</header>
+
+<!-- ================= MAIN ================= -->
+
+<main class="container">
+
+<!-- BANNER -->
+
+<div class="banner">
+
+<div>
+
+<h1>
+Telefoningiz uchun<br>
+eng zo‘r gadjetlar
+</h1>
+
+<p>
+Sifatli aksessuarlar qulay narxlarda
+</p>
+
+<button onclick="showAll()">
+Xarid qilish
+</button>
+
+</div>
+
+</div>
+
+<!-- ================= ADMIN PANEL ================= -->
+
+<div
+id="adminPanel"
+class="admin-panel">
+
+<h2>
+⚙️ Admin panel
+</h2>
+
+<div class="form-grid">
+
+<input
+id="newName"
+placeholder="Mahsulot nomi">
+
+<input
+id="newPrice"
+type="number"
+placeholder="Narxi">
+
+<select id="newCategory">
+
+<option value="phone">Telefonlar</option>
+<option value="audio">Quloqchinlar</option>
+<option value="power">Powerbank</option>
+<option value="cable">Kabellar</option>
+<option value="watch">Smart Watch</option>
+<option value="case">Chexollar</option>
+<option value="charger">Zaryadlovchi</option>
+
+</select>
+
+<div class="image-picker">
+
+<label
+for="newImageFile"
+class="image-button">
+📷 Rasm tanlash
+</label>
+
+<input
+id="newImageFile"
+type="file"
+accept="image/*"
+capture="environment"
+onchange="previewImage(event)"
+hidden>
+
+<img
+id="imagePreview"
+class="image-preview"
+alt="Preview"
+style="display:none;">
+
+</div>
+
+<button
+class="add-product"
+onclick="addProduct()">
++ Mahsulot qo‘shish
+</button>
+
+</div>
+
+<div class="admin-info">
+📷 Galereyadan rasm tanlash yoki telefon kamerasi orqali yangi rasm olish mumkin.
+</div>
+
+</div>
+
+<!-- ================= PRODUCTS ================= -->
+
+<div class="title">
+<h2 id="title">
+Mashhur mahsulotlar
+</h2>
+</div>
+
+<div
+id="products"
+class="products">
+</div>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<div class="container">
+GADGETUZ © 2026 — Telefon va gadjetlar marketplace
+</div>
+
+</footer>
+
+<!-- ================= LOGIN ================= -->
+
+<div
+id="loginModal"
+class="modal">
+
+<div class="login-box">
+
+<h2>🔐 Admin panel</h2>
+
+<p>
+Mahsulot qo‘shish va narxlarni boshqarish uchun kiring.
+</p>
+
+<div
+id="error"
+class="error">
+Login yoki parol noto‘g‘ri!
+</div>
+
+<input
+id="login"
+type="text"
+placeholder="Login">
+
+<input
+id="password"
+type="password"
+placeholder="Parol">
+
+<button
+class="login-submit"
+onclick="login()">
+Kirish
+</button>
+
+<button
+class="close"
+onclick="closeLogin()">
+Bekor qilish
+</button>
+
+</div>
+
+</div>
+
+<!-- TOAST -->
+
+<div
+id="toast"
+class="toast">
+Tayyor!
+</div>
+
+
+<script>
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+const ADMIN_LOGIN = "444000";
+const ADMIN_PASSWORD = "444000";
+
+let isAdmin = false;
+
+
+/* =====================================================
+   DEFAULT PRODUCTS
+===================================================== */
+
+const defaultProducts = [
+
+{
+    id:1,
+    name:"iPhone 15 Pro Max",
+    price:14499000,
+    category:"phone",
+    image:"https://images.unsplash.com/photo-1592286927505-2fd9d9f7a7c4?auto=format&fit=crop&w=700&q=80"
+},
+
+{
+    id:2,
+    name:"AirPods Pro",
+    price:999000,
+    category:"audio",
+    image:"https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=700&q=80"
+},
+
+{
+    id:3,
+    name:"Powerbank 20 000 mAh",
+    price:329000,
+    category:"power",
+    image:"https://images.unsplash.com/photo-1609592424999-6a4c0f4f7f2c?auto=format&fit=crop&w=700&q=80"
+},
+
+{
+    id:4,
+    name:"USB-C Premium Cable",
+    price:89000,
+    category:"cable",
+    image:"https://images.unsplash.com/photo-1625842268584-8f3296236761?auto=format&fit=crop&w=700&q=80"
+},
+
+{
+    id:5,
+    name:"Smart Watch Series 9",
+    price:699000,
+    category:"watch",
+    image:"https://images.unsplash.com/photo-1544117519-31a4b719223d?auto=format&fit=crop&w=700&q=80"
+},
+
+{
+    id:6,
+    name:"iPhone Premium Case",
+    price:129000,
+    category:"case",
+    image:"https://images.unsplash.com/photo-1603313011100-41a29b5b8b0e?auto=format&fit=crop&w=700&q=80"
+},
+
+{
+    id:7,
+    name:"Fast Charger 65W",
+    price:189000,
+    category:"charger",
+    image:"https://images.unsplash.com/photo-1625842268584-8f3296236761?auto=format&fit=crop&w=700&q=80"
+},
+
+{
+    id:8,
+    name:"iPhone 15",
+    price:11999000,
+    category:"phone",
+    image:"https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=700&q=80"
+}
+
+];
+
+
+let products =
+JSON.parse(
+    localStorage.getItem("gadgetProducts")
+) || defaultProducts;
+
+
+/* =====================================================
+   SAVE
+===================================================== */
+
+function saveProducts(){
+
+    localStorage.setItem(
+        "gadgetProducts",
+        JSON.stringify(products)
+    );
+
+}
+
+
+/* =====================================================
+   PRICE
+===================================================== */
+
+function formatPrice(price){
+
+    return Number(price)
+    .toLocaleString("uz-UZ")
+    + " so‘m";
+
+}
+
+
+/* =====================================================
+   SECURITY
+===================================================== */
+
+function escapeHTML(text){
+
+    return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   RENDER PRODUCTS
+===================================================== */
+
+function renderProducts(){
+
+    const box =
+        document.getElementById("products");
+
+    box.innerHTML = "";
+
+    products.forEach(function(product,index){
+
+        const card =
+            document.createElement("div");
+
+        card.className = "product";
+
+        card.style.animationDelay =
+            (index * 0.06) + "s";
+
+        card.dataset.category =
+            product.category;
+
+
+        /*
+         * MUHIM:
+         * Narx endi isAdmin ga bog‘liq emas.
+         * Shuning uchun admin chiqsa ham narx ko‘rinadi.
+         */
+
+        card.innerHTML = `
+
+        <div class="product-img">
+
+            <img
+                src="${product.image}"
+                onerror="this.src='https://via.placeholder.com/700x500?text=GadgetUZ'"
+            >
+
+        </div>
+
+        <div class="info">
+
+            <div class="name">
+                ${escapeHTML(product.name)}
+            </div>
+
+            <div class="rating">
+                ★ 4.9
+            </div>
+
+            <div class="price-area">
+
+                <div class="price">
+                    ${formatPrice(product.price)}
+                </div>
+
+            </div>
+
+
+            ${
+                isAdmin
+                ?
+                `
+
+                <div class="admin-controls">
+
+                    <button
+                        class="edit"
+                        onclick="editPrice(${product.id})">
+                        ✏ Narx
+                    </button>
+
+                    <button
+                        class="delete"
+                        onclick="deleteProduct(${product.id})">
+                        🗑 O‘chirish
+                    </button>
+
+                </div>
+
+                `
+                :
+                ""
+            }
+
+        </div>
+
+        `;
+
+        box.appendChild(card);
+
+    });
+
+}
+
+
+/* =====================================================
+   LOGIN MODAL
+===================================================== */
+
+function openLogin(){
+
+    document
+    .getElementById("loginModal")
+    .classList.add("show");
+
+    document
+    .getElementById("error")
+    .classList.remove("show");
+
+    document
+    .getElementById("login")
+    .focus();
+
+}
+
+
+function closeLogin(){
+
+    document
+    .getElementById("loginModal")
+    .classList.remove("show");
+
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+function login(){
+
+    const loginValue =
+        document.getElementById("login").value;
+
+    const passwordValue =
+        document.getElementById("password").value;
+
+
+    if(
+        loginValue === ADMIN_LOGIN &&
+        passwordValue === ADMIN_PASSWORD
+    ){
+
+        isAdmin = true;
+
+        localStorage.setItem(
+            "gadgetAdmin",
+            "true"
+        );
+
+        closeLogin();
+
+        updateAdminUI();
+
+        showToast(
+            "Admin panelga kirdingiz ✓"
+        );
+
+    }
+
+    else{
+
+        document
+        .getElementById("error")
+        .classList.add("show");
+
+    }
+
+}
+
+
+/* =====================================================
+   ADMIN UI
+===================================================== */
+
+function updateAdminUI(){
+
+    const loginButton =
+        document.getElementById("loginButton");
+
+    const adminStatus =
+        document.getElementById("adminStatus");
+
+    const adminPanel =
+        document.getElementById("adminPanel");
+
+
+    if(isAdmin){
+
+        loginButton.style.display = "none";
+
+        adminStatus.classList.add("show");
+
+        adminPanel.classList.add("show");
+
+    }
+
+    else{
+
+        loginButton.style.display = "block";
+
+        adminStatus.classList.remove("show");
+
+        adminPanel.classList.remove("show");
+
+    }
+
+
+    /*
+     * Har safar admin kirganda yoki chiqganda
+     * mahsulotlar qayta chiziladi.
+     *
+     * Narxlar esa doim ko‘rinadi.
+     */
+
+    renderProducts();
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout(){
+
+    isAdmin = false;
+
+    localStorage.removeItem(
+        "gadgetAdmin"
+    );
+
+    updateAdminUI();
+
+    showToast(
+        "Admin rejimidan chiqildi"
+    );
+
+}
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+let selectedImage = "";
+
+
+function previewImage(event){
+
+    const file =
+        event.target.files[0];
+
+    if(!file){
+        return;
+    }
+
+    if(!file.type.startsWith("image/")){
+
+        showToast(
+            "Faqat rasm tanlang!"
+        );
+
+        return;
+
+    }
+
+    const reader =
+        new FileReader();
+
+    reader.onload =
+        function(e){
+
+            selectedImage =
+                e.target.result;
+
+            const preview =
+                document.getElementById(
+                    "imagePreview"
+                );
+
+            preview.src =
+                selectedImage;
+
+            preview.style.display =
+                "block";
+
+        };
+
+    reader.readAsDataURL(file);
+
+}
+
+
+/* =====================================================
+   ADD PRODUCT
+===================================================== */
+
+function addProduct(){
+
+    if(!isAdmin){
+
+        showToast(
+            "Avval admin sifatida kiring!"
+        );
+
+        return;
+
+    }
+
+
+    const name =
+        document
+        .getElementById("newName")
+        .value
+        .trim();
+
+
+    const price =
+        Number(
+            document
+            .getElementById("newPrice")
+            .value
+        );
+
+
+    const category =
+        document
+        .getElementById("newCategory")
+        .value;
+
+
+    if(!name){
+
+        showToast(
+            "Mahsulot nomini kiriting!"
+        );
+
+        return;
+
+    }
+
+
+    if(!price || price < 0){
+
+        showToast(
+            "Narxni kiriting!"
+        );
+
+        return;
+
+    }
+
+
+    if(!selectedImage){
+
+        showToast(
+            "Rasm tanlang!"
+        );
+
+        return;
+
+    }
+
+
+    const newProduct = {
+
+        id:Date.now(),
+
+        name:name,
+
+        price:price,
+
+        category:category,
+
+        image:selectedImage
+
+    };
+
+
+    products.push(newProduct);
+
+    saveProducts();
+
+    renderProducts();
+
+
+    document
+    .getElementById("newName")
+    .value = "";
+
+
+    document
+    .getElementById("newPrice")
+    .value = "";
+
+
+    document
+    .getElementById("newImageFile")
+    .value = "";
+
+
+    selectedImage = "";
+
+
+    const preview =
+        document.getElementById(
+            "imagePreview"
+        );
+
+    preview.src = "";
+
+    preview.style.display =
+        "none";
+
+
+    showToast(
+        "Mahsulot qo‘shildi ✓"
+    );
+
+}
+
+
+/* =====================================================
+   EDIT PRICE
+===================================================== */
+
+function editPrice(id){
+
+    if(!isAdmin){
+
+        showToast(
+            "Faqat admin narxni o‘zgartira oladi!"
+        );
+
+        return;
+
+    }
+
+
+    const product =
+        products.find(
+            p => p.id === id
+        );
+
+
+    if(!product){
+        return;
+    }
+
+
+    const newPrice =
+        prompt(
+            "Yangi narxni kiriting:",
+            product.price
+        );
+
+
+    if(newPrice === null){
+        return;
+    }
+
+
+    const number =
+        Number(newPrice);
+
+
+    if(
+        isNaN(number) ||
+        number < 0
+    ){
+
+        showToast(
+            "Narx noto‘g‘ri!"
+        );
+
+        return;
+
+    }
+
+
+    product.price =
+        number;
+
+    saveProducts();
+
+    renderProducts();
+
+    showToast(
+        "Narx o‘zgartirildi ✓"
+    );
+
+}
+
+
+/* =====================================================
+   DELETE PRODUCT
+===================================================== */
+
+function deleteProduct(id){
+
+    if(!isAdmin){
+        return;
+    }
+
+
+    const product =
+        products.find(
+            p => p.id === id
+        );
+
+
+    if(!product){
+        return;
+    }
+
+
+    const answer =
+        confirm(
+            `"${product.name}" mahsulotini o‘chirasizmi?`
+        );
+
+
+    if(!answer){
+        return;
+    }
+
+
+    products =
+        products.filter(
+            p => p.id !== id
+        );
+
+
+    saveProducts();
+
+    renderProducts();
+
+    showToast(
+        "Mahsulot o‘chirildi"
+    );
+
+}
+
+
+/* =====================================================
+   CATEGORY
+===================================================== */
+
+function showCategory(
+    category,
+    button
+){
+
+    document
+    .querySelectorAll(".category")
+    .forEach(function(btn){
+
+        btn.classList.remove(
+            "active"
+        );
+
+    });
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    document
+    .querySelectorAll(".product")
+    .forEach(function(product){
+
+        if(
+            category === "all" ||
+            product.dataset.category === category
+        ){
+
+            product.classList.remove(
+                "hide"
+            );
+
+        }
+
+        else{
+
+            product.classList.add(
+                "hide"
+            );
+
+        }
+
+    });
+
+
+    const names = {
+
+        all:"Mashhur mahsulotlar",
+        phone:"Telefonlar",
+        audio:"Quloqchinlar",
+        power:"Powerbank",
+        cable:"Kabellar",
+        watch:"Smart Watch",
+        case:"Chexollar",
+        charger:"Zaryadlovchilar"
+
+    };
+
+
+    document
+    .getElementById("title")
+    .innerText =
+        names[category];
+
+}
+
+
+/* =====================================================
+   SHOW ALL
+===================================================== */
+
+function showAll(){
+
+    const button =
+        document.querySelector(
+            ".category"
+        );
+
+    showCategory(
+        "all",
+        button
+    );
+
+    window.scrollTo({
+        top:450,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+function searchProducts(){
+
+    const text =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    document
+    .querySelectorAll(".product")
+    .forEach(function(product){
+
+        const name =
+            product
+            .querySelector(".name")
+            .innerText
+            .toLowerCase();
+
+
+        if(
+            name.includes(text)
+        ){
+
+            product.classList.remove(
+                "hide"
+            );
+
+        }
+
+        else{
+
+            product.classList.add(
+                "hide"
+            );
+
+        }
+
+    });
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+    toast.innerText =
+        message;
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(function(){
+
+        toast.classList.remove(
+            "show"
+        );
+
+    },1800);
+
+}
+
+
+/* =====================================================
+   ENTER LOGIN
+===================================================== */
+
+document
+.getElementById("password")
+.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Enter"
+        ){
+
+            login();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   CLOSE MODAL
+===================================================== */
+
+document
+.getElementById("loginModal")
+.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target === this
+        ){
+
+            closeLogin();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   RESTORE ADMIN
+===================================================== */
+
+if(
+    localStorage.getItem(
+        "gadgetAdmin"
+    ) === "true"
+){
+
+    isAdmin = true;
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+updateAdminUI();
+
+</script>
+
+</body>
+</html>
+```
